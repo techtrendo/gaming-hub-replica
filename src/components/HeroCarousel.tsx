@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import heroBanner from "@/assets/hero-banner.jpg";
-import savingsBanner from "@/assets/savings-banner.jpg";
 
 const slides = [
   {
@@ -13,7 +12,7 @@ const slides = [
   },
   {
     id: 2,
-    image: savingsBanner,
+    image: heroBanner,
     title: "Supercell Savings Surge",
     subtitle: "Get amazing discounts on Clash of Clans and Brawl Stars gems",
   },
