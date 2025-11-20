@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Minus, Plus, ShoppingCart } from "lucide-react";
 import type { Product } from "./ProductCard";
+import { useNavigate } from "react-router-dom";
 
 interface QuickViewModalProps {
   product: Product | null;
@@ -13,6 +14,7 @@ interface QuickViewModalProps {
 }
 
 export const QuickViewModal = ({ product, open, onClose, onAddToCart }: QuickViewModalProps) => {
+  const navigate = useNavigate();
   const [quantity, setQuantity] = useState(1);
 
   if (!product) return null;
@@ -124,7 +126,14 @@ export const QuickViewModal = ({ product, open, onClose, onAddToCart }: QuickVie
                   <ShoppingCart className="h-4 w-4 mr-2" />
                   Add to Cart
                 </Button>
-                <Button className="flex-1" variant="outline">
+                <Button 
+                  className="flex-1" 
+                  variant="outline"
+                  onClick={() => {
+                    navigate(`/checkout/${product.id}`);
+                    onClose();
+                  }}
+                >
                   Buy Now
                 </Button>
               </div>
