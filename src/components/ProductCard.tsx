@@ -2,6 +2,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { ShoppingCart, Eye } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 export interface Product {
   id: number;
@@ -24,6 +25,7 @@ interface ProductCardProps {
 }
 
 export const ProductCard = ({ product, onQuickView, onAddToCart }: ProductCardProps) => {
+  const navigate = useNavigate();
   const discountPercent = Math.round(((product.oldPrice - product.price) / product.oldPrice) * 100);
 
   return (
@@ -92,7 +94,11 @@ export const ProductCard = ({ product, onQuickView, onAddToCart }: ProductCardPr
             )}
           </div>
 
-          <Button className="w-full mt-2" size="sm">
+          <Button 
+            className="w-full mt-2" 
+            size="sm"
+            onClick={() => navigate(`/checkout/${product.id}`)}
+          >
             Buy Now
           </Button>
         </div>
