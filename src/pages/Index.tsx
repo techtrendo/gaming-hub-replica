@@ -10,6 +10,7 @@ import { useToast } from "@/hooks/use-toast";
 const Index = () => {
   const [products, setProducts] = useState<Product[]>([]);
   const [selectedCategory, setSelectedCategory] = useState("All");
+  const [selectedGame, setSelectedGame] = useState("All");
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   const [cartCount, setCartCount] = useState(0);
   const { toast } = useToast();
@@ -22,7 +23,15 @@ const Index = () => {
   }, []);
 
   const categories = ["Top Up", "Gift Card", "Subscription", "Voucher"];
-  const featuredProducts = products.filter((p) => p.featured).slice(0, 8);
+  
+  // Filter products based on selected game and category
+  const filteredProducts = products.filter((p) => {
+    const matchesGame = selectedGame === "All" || p.game === selectedGame;
+    const matchesCategory = selectedCategory === "All" || p.category === selectedCategory;
+    return matchesGame && matchesCategory;
+  });
+  
+  const featuredProducts = filteredProducts.filter((p) => p.featured).slice(0, 8);
 
   const handleQuickView = (product: Product) => {
     setSelectedProduct(product);
@@ -59,10 +68,25 @@ const Index = () => {
         <section className="container mx-auto px-4 py-6">
           <h2 className="text-2xl font-bold mb-4">Popular Games</h2>
           <div className="flex gap-3 overflow-x-auto pb-2 scrollbar-hide">
+            <button
+              onClick={() => setSelectedGame("All")}
+              className={`flex-shrink-0 px-6 py-3 rounded-full border transition-colors ${
+                selectedGame === "All"
+                  ? "bg-primary text-primary-foreground border-primary"
+                  : "bg-card border-border hover:border-primary hover:bg-primary/5"
+              }`}
+            >
+              <span className="font-medium text-sm">All Games</span>
+            </button>
             {popularGames.map((game) => (
               <button
                 key={game}
-                className="flex-shrink-0 px-6 py-3 rounded-full bg-card border hover:border-primary hover:bg-primary/5 transition-colors"
+                onClick={() => setSelectedGame(game)}
+                className={`flex-shrink-0 px-6 py-3 rounded-full border transition-colors ${
+                  selectedGame === game
+                    ? "bg-primary text-primary-foreground border-primary"
+                    : "bg-card border-border hover:border-primary hover:bg-primary/5"
+                }`}
               >
                 <span className="font-medium text-sm">{game}</span>
               </button>
@@ -99,20 +123,24 @@ const Index = () => {
         <section className="container mx-auto px-4 py-6">
           <div className="flex items-center justify-between mb-6">
             <h2 className="text-2xl font-bold">All Products</h2>
-            <p className="text-muted-foreground">{products.length} items</p>
+            <p className="text-muted-foreground">{filteredProducts.length} items</p>
           </div>
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
-            {products
-              .filter((p) => selectedCategory === "All" || p.category === selectedCategory)
-              .map((product) => (
-                <ProductCard
-                  key={product.id}
-                  product={product}
-                  onQuickView={handleQuickView}
-                  onAddToCart={(p) => handleAddToCart(p, 1)}
-                />
-              ))}
+            {filteredProducts.map((product) => (
+              <ProductCard
+                key={product.id}
+                product={product}
+                onQuickView={handleQuickView}
+                onAddToCart={(p) => handleAddToCart(p, 1)}
+              />
+            ))}
           </div>
+          {filteredProducts.length === 0 && (
+            <div className="text-center py-16">
+              <p className="text-lg text-muted-foreground">No products found</p>
+              <p className="text-sm text-muted-foreground mt-2">Try selecting different filters</p>
+            </div>
+          )}
         </section>
       </main>
 
