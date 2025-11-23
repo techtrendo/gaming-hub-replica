@@ -30,7 +30,10 @@ export const ProductCard = ({ product, onQuickView, onAddToCart, showPrice = tru
   const discountPercent = Math.round(((product.oldPrice - product.price) / product.oldPrice) * 100);
 
   return (
-    <Card className="group relative overflow-hidden hover-lift hover-border border-2 border-transparent">
+    <Card 
+      className="group relative overflow-hidden hover-lift hover-border border-2 border-transparent cursor-pointer"
+      onClick={() => navigate(`/buy/${product.id}`)}
+    >
       <CardContent className="p-0">
         {/* Image Container */}
         <div className="relative aspect-square overflow-hidden bg-muted">
@@ -56,11 +59,14 @@ export const ProductCard = ({ product, onQuickView, onAddToCart, showPrice = tru
             <Button
               size="sm"
               variant="secondary"
-              onClick={() => onQuickView?.(product)}
+              onClick={(e) => {
+                e.stopPropagation();
+                onQuickView?.(product);
+              }}
               aria-label="Quick view product"
+              className="rounded-full p-3"
             >
-              <Eye className="h-4 w-4 mr-1" />
-              Quick View
+              <Eye className="h-5 w-5" />
             </Button>
           </div>
         </div>
@@ -93,9 +99,15 @@ export const ProductCard = ({ product, onQuickView, onAddToCart, showPrice = tru
           <Button 
             className="w-full mt-2" 
             size="sm"
-            onClick={() => navigate(`/buy/${product.id}`)}
+            variant="ghost"
+            onClick={(e) => {
+              e.stopPropagation();
+              onQuickView?.(product);
+            }}
+            aria-label="Quick view product"
           >
-            Buy Now
+            <Eye className="h-4 w-4 mr-2" />
+            Quick View
           </Button>
         </div>
       </CardContent>
