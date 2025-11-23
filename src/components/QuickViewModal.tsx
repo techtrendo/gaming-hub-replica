@@ -122,15 +122,10 @@ export const QuickViewModal = ({ product, open, onClose, onAddToCart }: QuickVie
               </div>
 
               <div className="flex gap-2">
-                <Button className="flex-1" onClick={handleAddToCart}>
-                  <ShoppingCart className="h-4 w-4 mr-2" />
-                  Add to Cart
-                </Button>
                 <Button 
                   className="flex-1" 
-                  variant="outline"
                   onClick={() => {
-                    navigate(`/checkout/${product.id}`);
+                    navigate(`/buy/${product.id}`);
                     onClose();
                   }}
                 >

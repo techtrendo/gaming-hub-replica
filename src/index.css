@@ -17,7 +17,7 @@ All colors MUST be HSL.
     --popover: 0 0% 100%;
     --popover-foreground: 222 13% 20%;
 
-    --primary: 217 91% 50%;
+    --primary: 25 95% 53%;
     --primary-foreground: 0 0% 100%;
 
     --secondary: 220 14% 96%;
@@ -26,7 +26,7 @@ All colors MUST be HSL.
     --muted: 220 14% 96%;
     --muted-foreground: 215 16% 47%;
 
-    --accent: 217 91% 50%;
+    --accent: 25 95% 53%;
     --accent-foreground: 0 0% 100%;
 
     --destructive: 0 84% 60%;
@@ -34,13 +34,13 @@ All colors MUST be HSL.
 
     --border: 220 13% 91%;
     --input: 220 13% 91%;
-    --ring: 217 91% 50%;
+    --ring: 25 95% 53%;
 
     --radius: 0.75rem;
 
-    --brand-blue: 217 91% 50%;
-    --brand-blue-dark: 217 91% 45%;
-    --brand-blue-light: 217 91% 95%;
+    --brand-orange: 25 95% 53%;
+    --brand-orange-dark: 25 95% 48%;
+    --brand-orange-light: 25 95% 95%;
     --success-green: 142 71% 45%;
     --warning-orange: 25 95% 53%;
     --text-primary: 222 13% 20%;
@@ -62,14 +62,14 @@ All colors MUST be HSL.
     --background: 222 47% 11%;
     --foreground: 210 40% 98%;
 
-    --card: 222 47% 11%;
+    --card: 222 47% 15%;
     --card-foreground: 210 40% 98%;
 
     --popover: 222 47% 11%;
     --popover-foreground: 210 40% 98%;
 
-    --primary: 217 91% 60%;
-    --primary-foreground: 222 47% 11%;
+    --primary: 25 95% 53%;
+    --primary-foreground: 0 0% 100%;
 
     --secondary: 217 33% 17%;
     --secondary-foreground: 210 40% 98%;
@@ -83,9 +83,9 @@ All colors MUST be HSL.
     --destructive: 0 63% 31%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 217 33% 17%;
+    --border: 217 33% 20%;
     --input: 217 33% 17%;
-    --ring: 217 91% 60%;
+    --ring: 25 95% 53%;
     --sidebar-background: 240 5.9% 10%;
     --sidebar-foreground: 240 4.8% 95.9%;
     --sidebar-primary: 224.3 76.3% 48%;
@@ -117,6 +117,10 @@ All colors MUST be HSL.
   }
 
   .gaming-gradient {
-    @apply bg-gradient-to-r from-brand-blue to-brand-blue-dark;
+    @apply bg-gradient-to-r from-brand-orange to-brand-orange-dark;
+  }
+  
+  .hover-border {
+    @apply transition-all duration-200 hover:border-primary;
   }
 }

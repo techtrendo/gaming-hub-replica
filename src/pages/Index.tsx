@@ -12,7 +12,6 @@ const Index = () => {
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [selectedGame, setSelectedGame] = useState("All");
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
-  const [cartCount, setCartCount] = useState(0);
   const { toast } = useToast();
 
   useEffect(() => {
@@ -38,7 +37,6 @@ const Index = () => {
   };
 
   const handleAddToCart = (product: Product, quantity: number = 1) => {
-    setCartCount((prev) => prev + quantity);
     toast({
       title: "Added to cart",
       description: `${quantity}x ${product.title} added to your cart`,
@@ -56,7 +54,7 @@ const Index = () => {
 
   return (
     <div className="min-h-screen flex flex-col">
-      <Header cartCount={cartCount} />
+      <Header />
 
       <main className="flex-1">
         {/* Hero Section */}
@@ -114,6 +112,7 @@ const Index = () => {
                 product={product}
                 onQuickView={handleQuickView}
                 onAddToCart={(p) => handleAddToCart(p, 1)}
+                showPrice={false}
               />
             ))}
           </div>
@@ -132,6 +131,7 @@ const Index = () => {
                 product={product}
                 onQuickView={handleQuickView}
                 onAddToCart={(p) => handleAddToCart(p, 1)}
+                showPrice={false}
               />
             ))}
           </div>
