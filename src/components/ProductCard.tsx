@@ -96,19 +96,30 @@ export const ProductCard = ({ product, onQuickView, onAddToCart, showPrice = tru
             </div>
           )}
 
-          <Button 
-            className="w-full mt-2" 
-            size="sm"
-            variant="ghost"
-            onClick={(e) => {
-              e.stopPropagation();
-              onQuickView?.(product);
-            }}
-            aria-label="Quick view product"
-          >
-            <Eye className="h-4 w-4 mr-2" />
-            Quick View
-          </Button>
+          <div className="flex items-center gap-2 mt-2">
+            <Button 
+              size="sm"
+              variant="ghost"
+              onClick={(e) => {
+                e.stopPropagation();
+                onQuickView?.(product);
+              }}
+              aria-label="Quick view product"
+              className="p-2"
+            >
+              <Eye className="h-4 w-4" />
+            </Button>
+            <Button 
+              className="flex-1" 
+              size="sm"
+              onClick={(e) => {
+                e.stopPropagation();
+                navigate(`/buy/${product.id}`);
+              }}
+            >
+              Buy Now
+            </Button>
+          </div>
         </div>
       </CardContent>
     </Card>
