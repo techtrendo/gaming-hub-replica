@@ -112,7 +112,7 @@ const Checkout = () => {
 
   return (
     <div className="min-h-screen flex flex-col">
-      <Header cartCount={0} />
+      <Header />
 
       <main className="flex-1 bg-muted/30">
         {/* Breadcrumbs */}

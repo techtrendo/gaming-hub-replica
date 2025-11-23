@@ -22,14 +22,15 @@ interface ProductCardProps {
   product: Product;
   onQuickView?: (product: Product) => void;
   onAddToCart?: (product: Product) => void;
+  showPrice?: boolean;
 }
 
-export const ProductCard = ({ product, onQuickView, onAddToCart }: ProductCardProps) => {
+export const ProductCard = ({ product, onQuickView, onAddToCart, showPrice = true }: ProductCardProps) => {
   const navigate = useNavigate();
   const discountPercent = Math.round(((product.oldPrice - product.price) / product.oldPrice) * 100);
 
   return (
-    <Card className="group relative overflow-hidden hover-lift">
+    <Card className="group relative overflow-hidden hover-lift hover-border border-2 border-transparent">
       <CardContent className="p-0">
         {/* Image Container */}
         <div className="relative aspect-square overflow-hidden bg-muted">
@@ -61,13 +62,6 @@ export const ProductCard = ({ product, onQuickView, onAddToCart }: ProductCardPr
               <Eye className="h-4 w-4 mr-1" />
               Quick View
             </Button>
-            <Button
-              size="sm"
-              onClick={() => onAddToCart?.(product)}
-              aria-label="Add to cart"
-            >
-              <ShoppingCart className="h-4 w-4" />
-            </Button>
           </div>
         </div>
 
@@ -83,21 +77,23 @@ export const ProductCard = ({ product, onQuickView, onAddToCart }: ProductCardPr
             {product.game}
           </p>
           
-          <div className="flex items-baseline gap-2 pt-1">
-            <span className="text-lg font-bold text-primary">
-              {product.currency} {product.price}
-            </span>
-            {product.oldPrice > product.price && (
-              <span className="text-sm text-muted-foreground line-through">
-                {product.currency} {product.oldPrice}
+          {showPrice && (
+            <div className="flex items-baseline gap-2 pt-1">
+              <span className="text-lg font-bold text-primary">
+                {product.currency} {product.price}
               </span>
-            )}
-          </div>
+              {product.oldPrice > product.price && (
+                <span className="text-sm text-muted-foreground line-through">
+                  {product.currency} {product.oldPrice}
+                </span>
+              )}
+            </div>
+          )}
 
           <Button 
             className="w-full mt-2" 
             size="sm"
-            onClick={() => navigate(`/checkout/${product.id}`)}
+            onClick={() => navigate(`/buy/${product.id}`)}
           >
             Buy Now
           </Button>

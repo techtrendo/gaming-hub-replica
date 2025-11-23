@@ -1,18 +1,33 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { NavLink } from "@/components/NavLink";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-import { Menu, Search, ShoppingCart, X } from "lucide-react";
+import { Menu, Search, X, Moon, Sun } from "lucide-react";
 import { Input } from "@/components/ui/input";
 
 interface HeaderProps {
   onSearchChange?: (query: string) => void;
-  cartCount?: number;
 }
 
-export const Header = ({ onSearchChange, cartCount = 0 }: HeaderProps) => {
+export const Header = ({ onSearchChange }: HeaderProps) => {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
+  const [darkMode, setDarkMode] = useState(false);
+
+  useEffect(() => {
+    const isDark = document.documentElement.classList.contains('dark');
+    setDarkMode(isDark);
+  }, []);
+
+  const toggleDarkMode = () => {
+    const newDarkMode = !darkMode;
+    setDarkMode(newDarkMode);
+    if (newDarkMode) {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
+  };
 
   const handleSearch = (value: string) => {
     setSearchQuery(value);
@@ -73,14 +88,9 @@ export const Header = ({ onSearchChange, cartCount = 0 }: HeaderProps) => {
               <Search className="h-5 w-5" />
             </Button>
 
-            {/* Cart */}
-            <Button variant="ghost" size="icon" className="relative">
-              <ShoppingCart className="h-5 w-5" />
-              {cartCount > 0 && (
-                <span className="absolute -right-1 -top-1 flex h-5 w-5 items-center justify-center rounded-full bg-primary text-xs text-primary-foreground">
-                  {cartCount}
-                </span>
-              )}
+            {/* Dark Mode Toggle */}
+            <Button variant="ghost" size="icon" onClick={toggleDarkMode} aria-label="Toggle dark mode">
+              {darkMode ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
             </Button>
 
             {/* Desktop Auth Buttons */}

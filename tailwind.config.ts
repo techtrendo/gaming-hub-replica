@@ -57,10 +57,10 @@ export default {
           border: "hsl(var(--sidebar-border))",
           ring: "hsl(var(--sidebar-ring))",
         },
-        "brand-blue": {
-          DEFAULT: "hsl(var(--brand-blue))",
-          dark: "hsl(var(--brand-blue-dark))",
-          light: "hsl(var(--brand-blue-light))",
+        "brand-orange": {
+          DEFAULT: "hsl(var(--brand-orange))",
+          dark: "hsl(var(--brand-orange-dark))",
+          light: "hsl(var(--brand-orange-light))",
         },
         "success-green": "hsl(var(--success-green))",
         "warning-orange": "hsl(var(--warning-orange))",

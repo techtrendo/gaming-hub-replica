@@ -78,7 +78,7 @@ const Shop = () => {
 
   return (
     <div className="min-h-screen flex flex-col">
-      <Header onSearchChange={setSearchQuery} cartCount={cartCount} />
+      <Header onSearchChange={setSearchQuery} />
 
       <main className="flex-1">
         {/* Breadcrumbs */}
