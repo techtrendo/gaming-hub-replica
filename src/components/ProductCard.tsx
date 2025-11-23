@@ -99,7 +99,7 @@ export const ProductCard = ({ product, onQuickView, onAddToCart, showPrice = tru
           <div className="flex items-center gap-2 mt-2">
             <Button 
               size="sm"
-              variant="ghost"
+              variant="default"
               onClick={(e) => {
                 e.stopPropagation();
                 onQuickView?.(product);
