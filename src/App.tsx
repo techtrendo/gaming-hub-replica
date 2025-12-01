@@ -13,6 +13,12 @@ import BuyNow from "./pages/BuyNow";
 import NotFound from "./pages/NotFound";
 import AdminDashboard from "./pages/admin/Dashboard";
 import GenericAdminPage from "./pages/admin/GenericAdminPage";
+import UserManagement from "./pages/admin/UserManagement";
+import OrdersTopUp from "./pages/admin/OrdersTopUp";
+import CardsCategory from "./pages/admin/CardsCategory";
+import Transactions from "./pages/admin/Transactions";
+import Marketing from "./pages/admin/Marketing";
+import StaffManagement from "./pages/admin/StaffManagement";
 
 const queryClient = new QueryClient();
 
@@ -33,28 +39,28 @@ const App = () => (
           
           {/* Admin Routes */}
           <Route path="/admin" element={<AdminDashboard />} />
-          <Route path="/admin/staff/manage" element={<GenericAdminPage title="Manage Staff" />} />
+          <Route path="/admin/staff/manage" element={<StaffManagement />} />
           <Route path="/admin/staff/roles" element={<GenericAdminPage title="Role & Permission" />} />
-          <Route path="/admin/cards/category" element={<GenericAdminPage title="Card Category" />} />
+          <Route path="/admin/cards/category" element={<CardsCategory />} />
           <Route path="/admin/cards/list" element={<GenericAdminPage title="Cards" />} />
           <Route path="/admin/agent-topup/category" element={<GenericAdminPage title="Agent Top Up Category" />} />
           <Route path="/admin/agent-topup/topup" element={<GenericAdminPage title="Top Up" />} />
-          <Route path="/admin/orders/topup" element={<GenericAdminPage title="Top Up Orders" />} />
+          <Route path="/admin/orders/topup" element={<OrdersTopUp />} />
           <Route path="/admin/orders/card" element={<GenericAdminPage title="Card Orders" />} />
           <Route path="/admin/sell/category" element={<GenericAdminPage title="Sell Category" />} />
           <Route path="/admin/sell/selling-point" element={<GenericAdminPage title="Selling Point" />} />
           <Route path="/admin/sell/sold-point" element={<GenericAdminPage title="Sold Point" />} />
-          <Route path="/admin/transactions/list" element={<GenericAdminPage title="Transactions" />} />
+          <Route path="/admin/transactions/list" element={<Transactions />} />
           <Route path="/admin/transactions/withdraw" element={<GenericAdminPage title="Withdraw Log" />} />
           <Route path="/admin/transactions/payment" element={<GenericAdminPage title="Payment Log" />} />
           <Route path="/admin/transactions/request" element={<GenericAdminPage title="Payment Request" />} />
-          <Route path="/admin/marketing/campaign" element={<GenericAdminPage title="Campaign" />} />
+          <Route path="/admin/marketing/campaign" element={<Marketing />} />
           <Route path="/admin/marketing/coupons" element={<GenericAdminPage title="Coupons" />} />
           <Route path="/admin/marketing/follow" element={<GenericAdminPage title="Follow" />} />
           <Route path="/admin/support/tickets" element={<GenericAdminPage title="Support Tickets" />} />
           <Route path="/admin/kyc/setting" element={<GenericAdminPage title="KYC Setting" />} />
           <Route path="/admin/kyc/request" element={<GenericAdminPage title="KYC Request" />} />
-          <Route path="/admin/users/management" element={<GenericAdminPage title="User Management" />} />
+          <Route path="/admin/users/management" element={<UserManagement />} />
           <Route path="/admin/users/activity" element={<GenericAdminPage title="User Activity" />} />
           <Route path="/admin/users/dashboard" element={<GenericAdminPage title="User Dashboard" />} />
           <Route path="/admin/payment/control" element={<GenericAdminPage title="Payment Control Panel" />} />
