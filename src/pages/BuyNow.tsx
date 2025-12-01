@@ -34,11 +34,11 @@ const BuyNow = () => {
 
   // Mock variants for demonstration
   const variants = [
-    { id: "1", name: "11 Diamonds (10 + 1 Bonus)", price: 29 },
-    { id: "2", name: "22 Diamonds (20 + 2 Bonus)", price: 58 },
-    { id: "3", name: "56 Diamonds (51 + 5 Bonus)", price: 145 },
-    { id: "4", name: "112 Diamonds (102 + 10 Bonus)", price: 295 },
-    { id: "5", name: "223 Diamonds (203 + 20 Bonus)", price: 595 },
+    { id: "1", name: "11 Diamonds (10 + 1 Bonus)", price: 29, image: "/placeholder.svg" },
+    { id: "2", name: "22 Diamonds (20 + 2 Bonus)", price: 58, image: "/placeholder.svg" },
+    { id: "3", name: "56 Diamonds (51 + 5 Bonus)", price: 145, image: "/placeholder.svg" },
+    { id: "4", name: "112 Diamonds (102 + 10 Bonus)", price: 295, image: "/placeholder.svg" },
+    { id: "5", name: "223 Diamonds (203 + 20 Bonus)", price: 595, image: "/placeholder.svg" },
   ];
 
   const paymentMethods = [
@@ -222,14 +222,23 @@ const BuyNow = () => {
                   key={variant.id}
                   type="button"
                   onClick={() => setSelectedVariant(variant.id)}
-                  className={`p-4 rounded-lg border-2 text-left transition-all ${
+                  className={`p-4 rounded-lg border-2 text-left transition-all hover:scale-105 ${
                     selectedVariant === variant.id
-                      ? "border-primary bg-primary/5"
+                      ? "border-primary bg-primary/5 shadow-lg"
                       : "border-border hover:border-primary/50"
                   }`}
                 >
-                  <p className="font-semibold text-sm mb-1">{variant.name}</p>
-                  <p className="text-primary font-bold">Rs {variant.price}</p>
+                  <div className="flex items-center gap-3 mb-2">
+                    <img 
+                      src={variant.image} 
+                      alt={variant.name}
+                      className="w-12 h-12 object-cover rounded"
+                    />
+                    <div className="flex-1">
+                      <p className="font-semibold text-sm">{variant.name}</p>
+                      <p className="text-primary font-bold">Rs {variant.price}</p>
+                    </div>
+                  </div>
                 </button>
               ))}
             </div>

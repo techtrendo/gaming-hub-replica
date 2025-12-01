@@ -160,13 +160,19 @@ export function AdminSidebar() {
     <Sidebar className="border-r border-border/40 bg-[#1a1d2e]" collapsible="icon">
       <SidebarContent className="bg-[#1a1d2e]">
         <SidebarGroup>
-          <div className="px-4 py-6">
+          <div className="px-4 py-6 border-b border-border/20">
             <h2 className={cn(
               "text-lg font-bold text-white transition-opacity",
               state === "collapsed" && "opacity-0"
             )}>
-              Admin Panel
+              Gaming Center
             </h2>
+            <p className={cn(
+              "text-xs text-gray-400 mt-1 transition-opacity",
+              state === "collapsed" && "opacity-0"
+            )}>
+              Admin Dashboard
+            </p>
           </div>
           <SidebarGroupContent>
             <SidebarMenu>
